@@ -336,6 +336,14 @@ body {
     white-space: nowrap;
 }
 
+[data-identity="entrepreneur"] .identity-btn.active {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+[data-identity="student"] .identity-btn.active {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
 @media (max-width: 768px) {
     .identity-text {
         display: none;

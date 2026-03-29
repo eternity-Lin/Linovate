@@ -288,6 +288,8 @@ const TimePlanner = {
         this.data.settings.identity = identity;
         this.saveData();
         
+        document.documentElement.setAttribute('data-identity', identity);
+        
         this.updateIdentityUI();
         this.updateModeLabels();
         this.render();
@@ -297,6 +299,8 @@ const TimePlanner = {
     },
 
     updateIdentityUI() {
+        document.documentElement.setAttribute('data-identity', this.currentIdentity);
+        
         document.querySelectorAll('.identity-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.identity === this.currentIdentity);
         });
@@ -330,17 +334,11 @@ const TimePlanner = {
 
     updateGoalTabs() {
         const config = this.identityConfig[this.currentIdentity];
-        const goalTabs = document.querySelectorAll('.goal-tab');
+        const workGoalLabel = document.getElementById('workGoalLabel');
         
-        goalTabs.forEach(tab => {
-            const type = tab.dataset.type;
-            if (config.goalTypes[type]) {
-                const textSpan = tab.querySelector('span:not(.goal-tab-icon)');
-                if (textSpan) {
-                    textSpan.textContent = config.goalTypes[type];
-                }
-            }
-        });
+        if (workGoalLabel) {
+            workGoalLabel.textContent = config.goalTypes.work;
+        }
     },
 
     switchMode(mode) {
